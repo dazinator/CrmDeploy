@@ -26,4 +26,4 @@
     <file src="CrmDeploy\bin\Release\net45\CrmDeploy.dll" target="lib\net45\CrmDeploy.dll" />
     <file src="CrmDeploy\bin\Release\net45\CrmDeploy.pdb" target="lib\net45\CrmDeploy.pdb" />
   </files>
-</package>a
+</package>
