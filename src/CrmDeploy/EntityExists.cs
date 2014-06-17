@@ -1,6 +1,6 @@
 ﻿using Microsoft.Xrm.Sdk;
 
-namespace CrmSync
+namespace CrmDeploy
 {
     public class EntityExists
     {

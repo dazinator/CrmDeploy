@@ -2,8 +2,8 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata>
     <id>CrmDeploy</id>
-    <version>0.0.0-alpha</version>
-    <title>c</title>
+    <version>0.0.1-alpha</version>
+    <title>CrmDeploy</title>
     <description>CrmDeploy is a .Net library that exposes a fluent API for deploying components (plugins and workflows etc) to Dynamics Crm.</description>
     <authors>Darrell Tunnell</authors>
     <owners>Darrell Tunnell</owners>

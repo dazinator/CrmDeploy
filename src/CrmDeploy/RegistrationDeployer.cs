@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using CrmSync.Connection;
+using CrmDeploy.Connection;
 using Microsoft.Xrm.Sdk;
 using Microsoft.Xrm.Sdk.Client;
 using Microsoft.Xrm.Sdk.Messages;
 
-namespace CrmSync
+namespace CrmDeploy
 {
     public class RegistrationDeployer : IRegistrationDeployer
     {

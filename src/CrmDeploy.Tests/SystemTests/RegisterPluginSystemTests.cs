@@ -2,8 +2,9 @@
 using System.Configuration;
 using System.Linq;
 using System.Reflection;
-using CrmSync.Connection;
-using CrmSync.Enums;
+using CrmDeploy;
+using CrmDeploy.Connection;
+using CrmDeploy.Enums;
 using Microsoft.Xrm.Sdk.Client;
 using Microsoft.Xrm.Sdk.Messages;
 using NUnit.Framework;
@@ -33,16 +34,20 @@ namespace CrmSync.Tests.SystemTests
         {
             var serviceProvider = new CrmServiceProvider(new ExplicitConnectionStringProviderWithFallbackToConfig(), new CrmClientCredentialsProvider());
             //PluginAssembly, PluginType, SdkMessageProcessingStep, and SdkMessageProcessingStepImage. 
-            var deployer = DeploymentBuilder.CreateRegistration()
-                                                           .ForTheAssemblyContainingThisPlugin<TestPlugin>()
-                                                            .Described("Test plugin assembly")
+            var deployer = DeploymentBuilder.CreateDeployment()
+                                                           .ForTheAssemblyContainingThisPlugin<TestPlugin>("Test plugin assembly")
                                                             .RunsInSandboxMode()
                                                             .LocatedInDatabase()
                                                            .HasPlugin<TestPlugin>()
-                                                            .ExecutesOn(SdkMessageNames.Create, "contact")
+                                                            .WhichExecutesOn(SdkMessageNames.Create, "contact")
                                                             .Synchronously()
                                                             .PostOperation()
                                                             .OnlyOnServer()
+                                                           .AndHasPlugin<TestPlugin>()
+                                                            .WhichExecutesOn(SdkMessageNames.Update, "contact")
+                                                            .Asynchronously()
+                                                            .PreOperation()
+                                                            .OnServerAndOffline()
                                                            .DeployTo(serviceProvider);
 
             RegistrationInfo = deployer.Deploy();

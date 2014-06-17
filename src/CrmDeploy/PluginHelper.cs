@@ -2,15 +2,15 @@
 using System.Linq;
 using System.Reflection;
 using System.ServiceModel;
-using CrmSync.Connection;
-using CrmSync.Entities;
+using CrmDeploy.Connection;
+using CrmDeploy.Entities;
 using Microsoft.Xrm.Client.Messages;
 using Microsoft.Xrm.Sdk;
 using Microsoft.Xrm.Sdk.Client;
 using Microsoft.Xrm.Sdk.Messages;
 using Microsoft.Xrm.Sdk.Query;
 
-namespace CrmSync
+namespace CrmDeploy
 {
     public class PluginHelper
     {

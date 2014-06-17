@@ -2,7 +2,7 @@ using Microsoft.Xrm.Sdk;
 using Microsoft.Xrm.Sdk.Deployment;
 using Microsoft.Xrm.Sdk.Discovery;
 
-namespace CrmSync.Connection
+namespace CrmDeploy.Connection
 {
     /// <summary>
     /// Classes that supply instances of Crm services will implement this interface.

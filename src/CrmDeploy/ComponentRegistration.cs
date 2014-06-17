@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace CrmSync
+namespace CrmDeploy
 {
     public class ComponentRegistration
     {

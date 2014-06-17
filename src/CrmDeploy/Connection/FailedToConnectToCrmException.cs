@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.Xrm.Client;
 
-namespace CrmSync.Connection
+namespace CrmDeploy.Connection
 {
     /// <summary>
     /// Single responsibility: To represent an exception connecting to a Crm service.

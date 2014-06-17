@@ -1,4 +1,4 @@
-namespace CrmSync.Entities
+namespace CrmDeploy.Entities
 {
     /// <summary>
     /// Stage in the execution pipeline that a plug-in is to execute.

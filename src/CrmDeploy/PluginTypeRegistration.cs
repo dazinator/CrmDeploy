@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using CrmSync.Entities;
+using CrmDeploy.Entities;
 using Microsoft.Xrm.Sdk;
 
-namespace CrmSync
+namespace CrmDeploy
 {
     public class PluginTypeRegistration
     {

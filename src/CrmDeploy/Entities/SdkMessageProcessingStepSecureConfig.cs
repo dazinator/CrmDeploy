@@ -1,4 +1,4 @@
-namespace CrmSync.Entities
+namespace CrmDeploy.Entities
 {
     /// <summary>
     /// Non-public custom configuration that is passed to a plug-in's constructor.

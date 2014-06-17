@@ -1,8 +1,8 @@
-﻿using CrmSync.Entities;
-using CrmSync.Enums;
+﻿using CrmDeploy.Entities;
+using CrmDeploy.Enums;
 using Microsoft.Xrm.Sdk;
 
-namespace CrmSync
+namespace CrmDeploy
 {
     public class PluginStepRegistration
     {

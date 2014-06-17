@@ -1,4 +1,4 @@
-namespace CrmSync.Entities
+namespace CrmDeploy.Entities
 {
     /// <summary>
     /// Assembly that contains one or more plug-in types.

@@ -1,10 +1,9 @@
-﻿using CrmSync.Enums;
+﻿using CrmDeploy.Enums;
 
-namespace CrmSync
+namespace CrmDeploy
 {
     public class PluginTypeOptionsBuilder
     {
-
         protected PluginTypeRegistration PluginTypeRegistration { get; set; }
 
         public PluginAssemblyOptionsBuilder PluginAssemblyOptions { get; set; }
@@ -15,19 +14,18 @@ namespace CrmSync
             PluginTypeRegistration = pluginTypeRegistration;
         }
 
-        public PluginStepOptionsBuilder ExecutesOn(string sdkMessageName, string primaryEntityLogicalName, string secondaryEntityLogicalName = "")
+        public PluginStepOptionsBuilder WhichExecutesOn(string sdkMessageName, string primaryEntityLogicalName, string secondaryEntityLogicalName = "")
         {
             var pluginStepRegistration = new PluginStepRegistration(this.PluginTypeRegistration, sdkMessageName, primaryEntityLogicalName, secondaryEntityLogicalName);
             PluginTypeRegistration.PluginStepRegistrations.Add(pluginStepRegistration);
             return new PluginStepOptionsBuilder(this, pluginStepRegistration);
         }
 
-        public PluginStepOptionsBuilder ExecutesOn(SdkMessageNames sdkMessageName, string primaryEntityLogicalName, string secondaryEntityLogicalName = "")
+        public PluginStepOptionsBuilder WhichExecutesOn(SdkMessageNames sdkMessageName, string primaryEntityLogicalName, string secondaryEntityLogicalName = "")
         {
             var pluginStepRegistration = new PluginStepRegistration(this.PluginTypeRegistration, sdkMessageName, primaryEntityLogicalName, secondaryEntityLogicalName);
             PluginTypeRegistration.PluginStepRegistrations.Add(pluginStepRegistration);
             return new PluginStepOptionsBuilder(this, pluginStepRegistration);
         }
-
     }
 }

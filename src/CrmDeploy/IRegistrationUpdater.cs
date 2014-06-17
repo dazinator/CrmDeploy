@@ -1,4 +1,4 @@
-﻿namespace CrmSync
+﻿namespace CrmDeploy
 {
     public interface IRegistrationDeployer
     {

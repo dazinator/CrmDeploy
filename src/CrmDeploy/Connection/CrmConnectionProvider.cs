@@ -1,6 +1,6 @@
 using Microsoft.Xrm.Client;
 
-namespace CrmSync.Connection
+namespace CrmDeploy.Connection
 {
 
     /// <summary>

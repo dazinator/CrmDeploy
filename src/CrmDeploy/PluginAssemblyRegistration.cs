@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Reflection;
-using CrmSync.Entities;
+using CrmDeploy.Entities;
 
-namespace CrmSync
+namespace CrmDeploy
 {
     public class PluginAssemblyRegistration
     {

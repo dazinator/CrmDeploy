@@ -1,9 +1,9 @@
 ﻿using System;
-using CrmSync.Connection;
-using CrmSync.Enums;
+using CrmDeploy.Connection;
+using CrmDeploy.Enums;
 using Microsoft.Xrm.Sdk;
 
-namespace CrmSync
+namespace CrmDeploy
 {
     public class PluginStepOptionsBuilder
     {
@@ -120,7 +120,7 @@ namespace CrmSync
             this.SupportedDeployment(PluginStepDeployment.Both);
             return this;
         }
-        
+
         public IRegistrationDeployer DeployTo(string orgConnectionString)
         {
             return PluginTypeOptions.PluginAssemblyOptions.RegistrationOptions.DeployTo(orgConnectionString);
@@ -131,6 +131,19 @@ namespace CrmSync
             return PluginTypeOptions.PluginAssemblyOptions.RegistrationOptions.DeployTo(crmserviceProvider);
         }
 
+        public PluginTypeOptionsBuilder AndHasPlugin<T>() where T : IPlugin
+        {
+            return PluginTypeOptions.PluginAssemblyOptions.HasPlugin<T>();
+        }
 
+        public PluginStepOptionsBuilder AndExecutesOn(SdkMessageNames messageName, string primaryEntityName, string secondaryEntityName = "")
+        {
+            return AndExecutesOn(messageName.ToString(), primaryEntityName, secondaryEntityName);
+        }
+
+        public PluginStepOptionsBuilder AndExecutesOn(string messageName, string primaryEntityName, string secondaryEntityName = "")
+        {
+            return PluginTypeOptions.WhichExecutesOn(messageName, primaryEntityName, secondaryEntityName);
+        }
     }
 }

@@ -1,6 +1,6 @@
 using Microsoft.Xrm.Client;
 
-namespace CrmSync.Connection
+namespace CrmDeploy.Connection
 {
     /// <summary>
     /// Classes that supply CrmConnection's used for creating instances of Crm services will implement this interface.

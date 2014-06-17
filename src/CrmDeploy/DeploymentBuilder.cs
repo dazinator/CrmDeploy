@@ -2,12 +2,12 @@
 using System.Globalization;
 using System.Linq;
 using System.Reflection;
-using CrmSync.Connection;
-using CrmSync.Entities;
-using CrmSync.Enums;
+using CrmDeploy.Connection;
+using CrmDeploy.Entities;
+using CrmDeploy.Enums;
 using Microsoft.Xrm.Sdk;
 
-namespace CrmSync
+namespace CrmDeploy
 {
     /// <summary>
     /// Single responsbility: To provide a fluent API for constructing Crm Plugin Registrations.
@@ -34,7 +34,7 @@ namespace CrmSync
             return new RegistrationDeployer(ComponentRegistration, crmServiceProvider);
         }
 
-        public static DeploymentBuilder CreateRegistration()
+        public static DeploymentBuilder CreateDeployment()
         {
             return new DeploymentBuilder();
         }
@@ -81,7 +81,7 @@ namespace CrmSync
             return new PluginAssemblyOptionsBuilder(this, par);
         }
 
-        public PluginAssemblyOptionsBuilder ForTheAssemblyContainingThisPlugin<T>() where T : IPlugin
+        public PluginAssemblyOptionsBuilder ForTheAssemblyContainingThisPlugin<T>(string description = "") where T : IPlugin
         {
 
             var assembly = Assembly.GetAssembly(typeof(T));
@@ -112,7 +112,8 @@ namespace CrmSync
                 },
                 Culture = "neutral",
                 PublicKeyToken = publicKeyToken,
-                Version = version
+                Version = version,
+                Description = description
             };
             //PluginAssembly = PluginAssembly;
            // var builder = new ComponentRegistrationBuilder();

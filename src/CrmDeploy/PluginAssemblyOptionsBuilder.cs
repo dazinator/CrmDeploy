@@ -1,10 +1,10 @@
 ﻿using System;
 using System.IO;
 using System.Linq;
-using CrmSync.Enums;
+using CrmDeploy.Enums;
 using Microsoft.Xrm.Sdk;
 
-namespace CrmSync
+namespace CrmDeploy
 {
     public class PluginAssemblyOptionsBuilder
     {
@@ -60,13 +60,6 @@ namespace CrmSync
                 {
                     Value = (int)AssemblySourceType.GAC
                 };
-            return this;
-        }
-
-        public PluginAssemblyOptionsBuilder Described(string description)
-        {
-            var pl = PluginAssemblyRegistration.PluginAssembly;
-            pl.Description = description;
             return this;
         }
 

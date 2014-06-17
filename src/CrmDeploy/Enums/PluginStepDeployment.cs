@@ -1,4 +1,4 @@
-﻿namespace CrmSync.Enums
+﻿namespace CrmDeploy.Enums
 {
     public enum PluginStepDeployment
     {

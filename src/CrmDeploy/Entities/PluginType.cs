@@ -1,4 +1,4 @@
-namespace CrmSync.Entities
+namespace CrmDeploy.Entities
 {
     /// <summary>
     /// Type that inherits from the IPlugin interface and is contained within a plug-in assembly.
