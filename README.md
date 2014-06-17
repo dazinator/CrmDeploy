@@ -43,3 +43,63 @@ using CrmDeploy.Enums;
         }
 
 ```
+
+# Multiple Plugin Steps?
+
+You can chain the .AndExecutesOn() methood to register multiple steps for your plugin.
+
+For example, if you want to register your plugin on Create, Update and Delete of a contact you could use the following syntax: 
+
+```csharp
+
+  var deployer = DeploymentBuilder.CreateDeployment()
+                                            .ForTheAssemblyContainingThisPlugin<TestPlugin>("Test plugin assembly")
+                                            .RunsInSandboxMode()
+                                            .RegisterInDatabase()
+                                                .HasPlugin<TestPlugin>()
+                                                    .WhichExecutesOn(SdkMessageNames.Create, "contact")
+                                                    .Synchronously()
+                                                    .PostOperation()
+                                                    .OnlyOnCrmServer()
+                                                    .AndExecutesOn(SdkMessageNames.Update, "contact")
+                                                    .Asynchronously()
+                                                    .PostOperation()
+                                                    .OnCrmServerAndOffline()
+                                                    .AndExecutesOn(SdkMessageNames.Delete, "contact")
+                                                    .Synchronously()
+                                                    .PreOperation()
+                                                    .OnlyOffline()
+                                             .DeployTo(crmConnectionString.ConnectionString);
+```
+
+# Multiple Plugins Steps?
+
+If you want to register more than one plugin, youc an simply chain the .AndHasPlugin() method. For example:-
+
+
+```csharp
+
+            var deployer = DeploymentBuilder.CreateDeployment()
+                                            .ForTheAssemblyContainingThisPlugin<TestPlugin>("Test plugin assembly")
+                                            .RunsInSandboxMode()
+                                            .RegisterInDatabase()
+                                                .HasPlugin<TestPlugin>()
+                                                    .WhichExecutesOn(SdkMessageNames.Create, "contact")
+                                                    .Synchronously()
+                                                    .PostOperation()
+                                                    .OnlyOnCrmServer()
+                                                 .AndHasPlugin<AnotherTestPlugin>()
+                                                    .WhichExecutesOn(SdkMessageNames.Update, "account")
+                                                    .Asynchronously()
+                                                    .PostOperation()
+                                                    .OnCrmServerAndOffline()
+                                                  .AndHasPlugin<SomeOtherPlugin>()
+                                                    .WhichExecutesOn(SdkMessageNames.Associate, "my_custent", "my_otherent")
+                                                    .Synchronously()
+                                                    .PreOperation()
+                                                    .Rank(2)
+                                                    .OnlyOffline()
+                                             .DeployTo(crmConnectionString.ConnectionString);
+
+```
+
