@@ -75,7 +75,7 @@ For example, if you want to register your plugin on Create, Update and Delete of
                                              .DeployTo(crmConnectionString.ConnectionString);
 ```
 
-# Multiple Plugins Steps?
+# Many Plugins?
 
 If you want to register more than one plugin, you can simply chain the .AndHasPlugin() method. For example:-
 
