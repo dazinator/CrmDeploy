@@ -108,8 +108,8 @@ You can chain the .AndHasPlugin() method to register multiple plugins. For examp
 
 # What about workflows?
 
-I will add support for workflows as the need arises (or the demand!)
+I will add support for workflows as the need arises (or if its in demand - raise an issue and let me know!)
 
 # What about Pre / Post Images?
 
-I will add support for Images as the need arises (or the demand!)
+I will add support for Images as the need arises (or the demand - raise an issue and let me know!)
