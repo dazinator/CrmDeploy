@@ -106,3 +106,6 @@ If you want to register more than one plugin, you can simply chain the .AndHasPl
 
 ```
 
+# What about workflows?
+
+I will add support for workflows as the need arises (or the demand!)
