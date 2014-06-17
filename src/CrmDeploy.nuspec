@@ -4,7 +4,7 @@
     <id>CrmDeploy</id>
     <version>0.0.0</version>
     <title>CrmDeploy</title>
-    <description>Deploy plugins / workflows etc to Dynamics CRM programmatically using a fluent API. This is useful for when a manual process (such as using the Plugin Registration Tool) just wont cut it!</description>
+    <description>Deploy plugins / workflows etc to Dynamics CRM programmatically using a fluent API. This is useful for when a manual process, such as using the Plugin Registration Tool, just wont cut it!</description>
     <authors>Darrell Tunnell</authors>
     <owners>Darrell Tunnell</owners>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
