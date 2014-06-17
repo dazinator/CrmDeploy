@@ -1,7 +1,7 @@
 CrmDeploy
 =========
 
-A .Net Library that makes it simple to deploy plugins / workflows etc to Dynamics CRM programmatically. This is useful for when a manual process such as using the Plugin Registration Tool is not desirable.
+A .Net Library that makes it simple to deploy plugins / workflows etc to Dynamics CRM programmatically. This is useful for when a manual process such as using the Plugin Registration Tool is not desirable, for example when writing a set of system / integration tests for plugins, or for when your application does not know in advance which entities a particular plugin or component needs to be registered against.
 
 # Deploying Plugins
 
