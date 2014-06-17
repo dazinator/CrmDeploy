@@ -49,7 +49,7 @@ If for any reason the deployment fails, the registrationInfo.Undeploy() method w
 
 # Multiple Plugin Steps?
 
-You can chain the .AndExecutesOn() methood to register multiple steps for your plugin.
+You can chain the .AndExecutesOn() method to register multiple steps for a plugin.
 
 For example, if you want to register your plugin on Create, Update and Delete of a contact you could use the following syntax: 
 
@@ -77,7 +77,7 @@ For example, if you want to register your plugin on Create, Update and Delete of
 
 # Many Plugins?
 
-If you want to register more than one plugin, you can simply chain the .AndHasPlugin() method. For example:-
+You can chain the .AndHasPlugin() method to register multiple plugins. For example:-
 
 
 ```csharp
