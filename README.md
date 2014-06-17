@@ -77,7 +77,7 @@ For example, if you want to register your plugin on Create, Update and Delete of
 
 # Multiple Plugins Steps?
 
-If you want to register more than one plugin, youc an simply chain the .AndHasPlugin() method. For example:-
+If you want to register more than one plugin, you can simply chain the .AndHasPlugin() method. For example:-
 
 
 ```csharp
