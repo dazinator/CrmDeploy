@@ -103,7 +103,7 @@ namespace CrmDeploy
             return this;
         }
 
-        public PluginStepOptionsBuilder OnlyOnServer()
+        public PluginStepOptionsBuilder OnlyOnCrmServer()
         {
             this.SupportedDeployment(PluginStepDeployment.ServerOnly);
             return this;
@@ -115,7 +115,7 @@ namespace CrmDeploy
             return this;
         }
 
-        public PluginStepOptionsBuilder OnServerAndOffline()
+        public PluginStepOptionsBuilder OnCrmServerAndOffline()
         {
             this.SupportedDeployment(PluginStepDeployment.Both);
             return this;

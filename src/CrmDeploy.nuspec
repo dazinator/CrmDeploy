@@ -2,9 +2,9 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata>
     <id>CrmDeploy</id>
-    <version>0.0.1-alpha</version>
+    <version>0.0.0</version>
     <title>CrmDeploy</title>
-    <description>CrmDeploy is a .Net library that exposes a fluent API for deploying components (plugins and workflows etc) to Dynamics Crm.</description>
+    <description>Deploy plugins / workflows etc to Dynamics CRM programmatically using a fluent API. This is useful for when a manual process (such as using the Plugin Registration Tool) just wont cut it!</description>
     <authors>Darrell Tunnell</authors>
     <owners>Darrell Tunnell</owners>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
@@ -12,9 +12,9 @@
     <projectUrl>https://github.com/dazinator/CrmDeploy</projectUrl>
     <copyright>Copyright � Darrell Tunnell 2014</copyright>
     <releaseNotes>
-      Initial release in alpha stage.
+      Initial release.
     </releaseNotes>
-    <tags>Dynamics Crm Deploy Deployment Plugin PluginRegistration Workflow WorkflowRegistration</tags>
+    <tags>Dynamics Crm Deploy Deployment Plugin PluginRegistration PluginRegistrationTool Workflow WorkflowRegistration</tags>
     <dependencies>
       <dependency id="Microsoft.CrmSdk.Extensions" version="6.0.4" />
       <dependency id="Microsoft.CrmSdk.CoreAssemblies" version="6.0.4" />
@@ -26,4 +26,4 @@
     <file src="CrmDeploy\bin\Release\net45\CrmDeploy.dll" target="lib\net45\CrmDeploy.dll" />
     <file src="CrmDeploy\bin\Release\net45\CrmDeploy.pdb" target="lib\net45\CrmDeploy.pdb" />
   </files>
-</package>
+</package>a

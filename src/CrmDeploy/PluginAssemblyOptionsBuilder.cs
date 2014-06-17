@@ -19,7 +19,7 @@ namespace CrmDeploy
             RegistrationOptions = componentRegistrationnBuilder;
         }
 
-        public PluginAssemblyOptionsBuilder LocatedInDatabase()
+        public PluginAssemblyOptionsBuilder RegisterInDatabase()
         {
             var pl = PluginAssemblyRegistration.PluginAssembly;
             pl.SourceType = new OptionSetValue()
@@ -31,7 +31,7 @@ namespace CrmDeploy
             return this;
         }
 
-        public PluginAssemblyOptionsBuilder LocatedInDatabase(string assemblyFilePath)
+        public PluginAssemblyOptionsBuilder RegisterInDatabase(string assemblyFilePath)
         {
             var pl = PluginAssemblyRegistration.PluginAssembly;
             pl.SourceType = new OptionSetValue()
@@ -42,7 +42,7 @@ namespace CrmDeploy
             return this;
         }
 
-        public PluginAssemblyOptionsBuilder LocatedOnServerFileSystem(string serverFilename)
+        public PluginAssemblyOptionsBuilder RegisterOnServerFileSystem(string serverFilename)
         {
             var pl = PluginAssemblyRegistration.PluginAssembly;
             pl.SourceType = new OptionSetValue()
@@ -53,7 +53,7 @@ namespace CrmDeploy
             return this;
         }
 
-        public PluginAssemblyOptionsBuilder LocatedInGacOnServer()
+        public PluginAssemblyOptionsBuilder RegisterOnServerGac()
         {
             var pl = PluginAssemblyRegistration.PluginAssembly;
             pl.SourceType = new OptionSetValue()

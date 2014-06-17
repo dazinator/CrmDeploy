@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using CrmDeploy.Connection;
 using Microsoft.Xrm.Sdk;
@@ -51,11 +52,12 @@ namespace CrmDeploy
                         // Create new plugin assembly registration.
                         var newRecordId = pluginHelper.RegisterAssembly(pa);
                         pa.PluginAssemblyId = newRecordId;
-                        result.RelatedEntities.Add(pa.LogicalName, newRecordId);
+                        result.RecordChange(pa.LogicalName, newRecordId);
                     }
                     else
                     {
-                        result.RelatedEntities.Add(pa.LogicalName, pluginExists.EntityReference.Id);
+                        pa.PluginAssemblyId = pluginExists.EntityReference.Id;
+                        result.RecordChange(pa.LogicalName, pluginExists.EntityReference.Id);
                     }
 
                     foreach (var ptr in par.PluginTypeRegistrations)
@@ -64,15 +66,15 @@ namespace CrmDeploy
 
                         if (!pluginTypeExists.Exists)
                         {
-                            // Create new plugin assembly registration.
+                            // Create new plugin type registration.
                             var newRecordId = pluginHelper.RegisterType(ptr.PluginType);
                             ptr.PluginType.PluginTypeId = newRecordId;
-                            result.RelatedEntities.Add(ptr.PluginType.LogicalName, newRecordId);
+                            result.RecordChange(ptr.PluginType.LogicalName, newRecordId);
                         }
                         else
                         {
-                            ptr.PluginType.PluginTypeId = pluginExists.EntityReference.Id;
-                            result.RelatedEntities.Add(ptr.PluginType.LogicalName, pluginTypeExists.EntityReference.Id);
+                            ptr.PluginType.PluginTypeId = pluginTypeExists.EntityReference.Id;
+                            result.RecordChange(ptr.PluginType.LogicalName, pluginTypeExists.EntityReference.Id);
                         }
 
                         // for each step
@@ -89,7 +91,7 @@ namespace CrmDeploy
                             ps.SdkMessageProcessingStep.SdkMessageFilterId = new EntityReference("sdkmessagefilter", sdkFilterMessageId);
 
                             var newRecordId = pluginHelper.RegisterStep(ps.SdkMessageProcessingStep);
-                            result.RelatedEntities.Add(ps.SdkMessageProcessingStep.LogicalName, newRecordId);
+                            result.RecordChange(ps.SdkMessageProcessingStep.LogicalName, newRecordId);
 
                         }
                     }
@@ -114,8 +116,9 @@ namespace CrmDeploy
             var service = new CrmServiceProvider(new ExplicitConnectionStringProviderWithFallbackToConfig(), new CrmClientCredentialsProvider());
 
             // clean up in reverse creation order.
-            var entities = regisrationInfo.RelatedEntities.Reverse();
-            DeleteEntities(service, entities);
+
+            regisrationInfo.RelatedEntities.Reverse();
+            DeleteEntities(service, regisrationInfo.RelatedEntities);
         }
 
         /// <summary>
@@ -128,11 +131,20 @@ namespace CrmDeploy
             {
                 foreach (var entity in entities)
                 {
-                    orgService.Execute(new DeleteRequest()
+                    try
+                    {
+                        orgService.Execute(new DeleteRequest()
                         {
                             Target = new EntityReference() { LogicalName = entity.Key, Id = entity.Value }
                         });
-                    // Console.WriteLine(string.Format("Deleted entity: {0} with id : {1}", entity.Key, entity.Value));
+                    }
+                    catch (Exception e)
+                    {
+                        Debug.Write(e.Message);
+                        throw;
+                    }
+                 
+                    
                 }
             }
         }

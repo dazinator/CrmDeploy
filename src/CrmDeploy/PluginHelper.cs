@@ -128,7 +128,7 @@ namespace CrmDeploy
                         {
                             orgService.Attach(step.plugintype_sdkmessageprocessingstep);
                         }
-                      
+
                     }
 
                     orgService.AddObject(step);

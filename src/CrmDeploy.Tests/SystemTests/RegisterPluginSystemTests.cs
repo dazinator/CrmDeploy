@@ -1,12 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
 using System.Configuration;
-using System.Linq;
-using System.Reflection;
 using CrmDeploy;
-using CrmDeploy.Connection;
 using CrmDeploy.Enums;
-using Microsoft.Xrm.Sdk.Client;
-using Microsoft.Xrm.Sdk.Messages;
 using NUnit.Framework;
 
 namespace CrmSync.Tests.SystemTests
@@ -23,6 +18,7 @@ namespace CrmSync.Tests.SystemTests
 
         }
 
+
         [TestFixtureSetUp]
         public void Setup()
         {
@@ -32,39 +28,52 @@ namespace CrmSync.Tests.SystemTests
         [Test]
         public void RegisterPlugin()
         {
-            var serviceProvider = new CrmServiceProvider(new ExplicitConnectionStringProviderWithFallbackToConfig(), new CrmClientCredentialsProvider());
-            //PluginAssembly, PluginType, SdkMessageProcessingStep, and SdkMessageProcessingStepImage. 
+            var crmConnectionString = ConfigurationManager.ConnectionStrings["CrmOrganisationService"];
             var deployer = DeploymentBuilder.CreateDeployment()
-                                                           .ForTheAssemblyContainingThisPlugin<TestPlugin>("Test plugin assembly")
-                                                            .RunsInSandboxMode()
-                                                            .LocatedInDatabase()
-                                                           .HasPlugin<TestPlugin>()
-                                                            .WhichExecutesOn(SdkMessageNames.Create, "contact")
-                                                            .Synchronously()
-                                                            .PostOperation()
-                                                            .OnlyOnServer()
-                                                           .AndHasPlugin<TestPlugin>()
-                                                            .WhichExecutesOn(SdkMessageNames.Update, "contact")
-                                                            .Asynchronously()
-                                                            .PreOperation()
-                                                            .OnServerAndOffline()
-                                                           .DeployTo(serviceProvider);
+                                            .ForTheAssemblyContainingThisPlugin<TestPlugin>("Test plugin assembly")
+                                            .RunsInSandboxMode()
+                                            .RegisterInDatabase()
+                                                .HasPlugin<TestPlugin>()
+                                                    .WhichExecutesOn(SdkMessageNames.Create, "contact")
+                                                    .Synchronously()
+                                                    .PostOperation()
+                                                    .OnlyOnCrmServer()
+                                                    .AndExecutesOn(SdkMessageNames.Update, "contact")
+                                                    .Synchronously()
+                                                    .PostOperation()
+                                                    .OnCrmServerAndOffline()
+                                             .DeployTo(crmConnectionString.ConnectionString);
 
             RegistrationInfo = deployer.Deploy();
             if (!RegistrationInfo.Success)
             {
-                Assert.Fail("Registration failed..");
-                //deployer.Undeploy(updateInfo);
-                //Console.WriteLine("Registration was rolled back..");
+                var reason = RegistrationInfo.Error.Message;
+                Assert.Fail("Registration failed because: {0}.", reason);
+                // registrationInfo.Undeploy();
+                // Console.WriteLine("Deployment was rolled back..");
             }
 
+            //.AndExecutesOn(SdkMessageNames.Delete, "contact")
+            //                                       .Synchronously()
+            //                                       .PostOperation()
+            //                                       .OnlyOffline()
 
         }
 
         [TestFixtureTearDown]
         public void TearDown()
         {
-            RegistrationInfo.Undeploy();
+            try
+            {
+                RegistrationInfo.Undeploy();
+                Console.WriteLine("Deployment was rolled back..");
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                Assert.Fail(e.Message);
+            }
+          
         }
 
     }

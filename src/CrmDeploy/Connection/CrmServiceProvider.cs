@@ -31,6 +31,15 @@ namespace CrmDeploy.Connection
             _credentialsProvider = credentialsProvider;
         }
 
+        public CrmServiceProvider(string connectionString): this(new ExplicitConnectionStringProviderWithFallbackToConfig(){OrganisationServiceConnectionString = connectionString}, new CrmClientCredentialsProvider())
+        {
+        }
+
+        public CrmServiceProvider()
+            : this(new ExplicitConnectionStringProviderWithFallbackToConfig(), new CrmClientCredentialsProvider())
+        {
+        }
+
         public IOrganizationService GetOrganisationService()
         {
             CrmConnection connection = null;
