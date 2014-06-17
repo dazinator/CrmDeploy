@@ -36,13 +36,16 @@ using CrmDeploy.Enums;
             {
                 var reason = registrationInfo.Error.Message;
                 Console.WriteLine("Registration failed because: {0}. Rolling deployment back.", reason);
-                deployer.Undeploy(RegistrationInfo);
+                registrationInfo.Undeploy();
                 Console.WriteLine("Deployment was rolled back..");
             }
 
         }
 
 ```
+
+If for any reason the deployment fails, the registrationInfo.Undeploy() method will attempt to roll back the changes that were made.
+                
 
 # Multiple Plugin Steps?
 
