@@ -11,7 +11,6 @@ The following demonstrates how to deploy a plugin to Dynamics Crm using the flue
 
 ```csharp
 using CrmDeploy;
-using CrmDeploy.Connection;
 using CrmDeploy.Enums;
 
 
@@ -30,7 +29,7 @@ using CrmDeploy.Enums;
                                                     .Synchronously()
                                                     .PostOperation()
                                                     .OnlyOnCrmServer()
-                                             .DeployTo(new CrmServiceProvider(crmConnectionString));
+                                             .DeployTo(crmConnectionString);
 
             var registrationInfo = deployer.Deploy();
             if (!RegistrationInfo.Success)
